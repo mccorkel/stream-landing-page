@@ -1,4 +1,5 @@
 
+
 import './App.css';
 
 function App() {
@@ -7,11 +8,13 @@ function App() {
   const androidVersions = [
     
     { version: "1.0.0", link: "https://expo.dev/artifacts/eas/uhhDYgDDEpcPZbZDE1y6cP.tar.gz" },
+    { version: "1.0.1", link: "https://expo.dev/artifacts/eas/qggGSMyMjRVtdkBBAdmHrs.aab" },
     // Add more Android versions as needed
   ];
 
   const iosVersions = [
     { version: "1.0.0", link: "https://expo.dev/artifacts/eas/tmsRpm6iNns7Jpb8UD7d9q.ipa" },
+    { version: "1.0.1", link: "https://expo.dev/artifacts/eas/8UVoPPWertLPkqsTC4wB1t.ipa" }
     // Add more iOS versions as needed
   ];
 

@@ -1,39 +1,74 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
 
-const client = generateClient<Schema>();
+import './App.css';
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const appName = "stream.tigerpanda.tv";
 
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
+  const androidVersions = [
+    
+    { version: "1.0.0", link: "https://expo.dev/artifacts/eas/uhhDYgDDEpcPZbZDE1y6cP.tar.gz" },
+    // Add more Android versions as needed
+  ];
 
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
+  const iosVersions = [
+    { version: "1.0.0", link: "https://expo.dev/artifacts/eas/tmsRpm6iNns7Jpb8UD7d9q.ipa" },
+    // Add more iOS versions as needed
+  ];
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
+    <div className="app-container">
+      <header>
+        <h1>{appName}</h1>
+      </header>
+
+      <main>
+        <section className="downloads">
+          <h2>Android</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Version</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {androidVersions.map((v) => (
+                <tr key={v.version}>
+                  <td>{v.version}</td>
+                  <td>
+                    <a href={v.link} className="download-link">Download</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <h2>iOS</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Version</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {iosVersions.map((v) => (
+                <tr key={v.version}>
+                  <td>{v.version}</td>
+                  <td>
+                    <a href={v.link} className="download-link">Download</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </main>
+
+      <footer>
+        {/* You can add a footer if needed */}
+      </footer>
+    </div>
   );
 }
 
